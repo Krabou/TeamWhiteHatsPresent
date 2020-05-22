@@ -1,9 +1,17 @@
 const express = require("express");
 const router = express.Router();
-// const sneakerModel = require("./../models/Sneaker");
+const sneakerModel = require("./../models/Sneaker");
 
-router.get("/sneakers/men", (req, res) => {
-    res.render("products");
-  });
+router.get("/sneakers/:men", (req, res) => {
+    sneakerModel
+    .find()
+    .then(dbRes => {
+        console.log("collection", dbRes)
+   
+res.render("products", {
+        collection: dbRes
+    }) })
+    .catch(dbErr => console.log("error d'affichage collection"));
+});
 
   module.exports = router;
