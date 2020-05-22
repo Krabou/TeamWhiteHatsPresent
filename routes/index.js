@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-return console.log(`
------------------------------
------------------------------
-node says : wax on / wax off !
------------------------------
------------------------------`
-);
+// return console.log(`
+// -----------------------------
+// -----------------------------
+// node says : wax on / wax off !
+// -----------------------------
+// -----------------------------`
+// );
 
 router.get("/", (req, res) => {
   res.send("foo");
