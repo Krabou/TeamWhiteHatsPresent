@@ -15,5 +15,5 @@ const sneakerSchema = new Schema ({
     id_tags: [Schema.Types.ObjectId]  
     })
 
-    const sneakerModel = mongoose.model("sneaker", sneakerSchema)
+    const sneakerModel = mongoose.model("Sneaker", sneakerSchema)
     module.exports = sneakerModel;

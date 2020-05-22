@@ -14,4 +14,13 @@ res.render("products", {
     .catch(dbErr => console.log("error d'affichage collection"));
 });
 
-  module.exports = router;
+// router.get("/sneakers/men", (req, res) => {
+//     sneakerModel 
+//        .find()
+//        .then((dbRes) => {        
+//          res.render("sneaker", { sneaker: dbRes }); 
+//        })
+//        .catch(next);
+//      });
+     
+//      module.exports = router;
