@@ -2,6 +2,9 @@ const express = require("express");
 const router = new express.Router();
 const sneakerModel = require("../models/Sneaker");
 
+router.get("/sneakers/kids", (req, res) => {
+    res.render("products")
+});
 
 router.get("/sneakers/kids", (req, res) => {
     sneakerModel 
@@ -13,4 +16,6 @@ router.get("/sneakers/kids", (req, res) => {
        })
        .catch(next);
      });
-   
+
+     module.exports = router;
+     
