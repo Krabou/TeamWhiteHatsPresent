@@ -1,17 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-<<<<<<< HEAD
-=======
-// return console.log(`
-// -----------------------------
-// -----------------------------
-// node says : wax on / wax off !
-// -----------------------------
-// -----------------------------`
-// );
-
->>>>>>> 1048d73d487928bdadb2cdc6381e48a7b86da053
 router.get("/", (req, res) => {
   res.render("index");
 });

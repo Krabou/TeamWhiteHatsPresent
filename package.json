@@ -23,12 +23,6 @@
   "devDependencies": {
     "dotenv": "^8.2.0"
   },
-<<<<<<< HEAD
-  "devDependencies": {
-    "dotenv": "^8.2.0"
-  },
-=======
->>>>>>> 1048d73d487928bdadb2cdc6381e48a7b86da053
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./bin/www",
