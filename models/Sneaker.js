@@ -4,18 +4,15 @@ const Schema = mongoose.Schema;
 const sneakerSchema = new Schema ({  
     image: {
         type: String,
-        default:""
+        default: ""
     },
     name: String,  
     ref: String,  
     size: Number,  
     description: String,  
     price: Number,  
-    category: {
-        type: Schema.Types.ObjectId,
-        enum: ["men", "women", "kids"]
-    },
-    // id_tags: []  
+    category: ["men", "women", "kids"],  
+    id_tags: [Schema.Types.ObjectId]  
     })
 
     const sneakerModel = mongoose.model("Sneaker", sneakerSchema)

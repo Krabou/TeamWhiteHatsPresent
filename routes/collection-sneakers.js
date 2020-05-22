@@ -1,16 +1,17 @@
-// const express = require("express");
-// const router = new express.Router();
-// const sneakerModel = require("../models/Sneaker");
+const express = require("express");
+const router = express.Router();
+const sneakerModel = require("./../models/Sneaker");
 
+router.get("/sneakers/collection", (req, res) => {
+    sneakerModel
+        .find()
+        .then(dbRes => {
+            console.log("collection", dbRes)
+       
+    res.render("products", {
+            collection: dbRes
+        }) })
+        .catch(dbErr => console.log("error d'affichage collection"));
+});
 
-// router.get("/sneakers/collection", (req, res) => {
-//  sneakerModel 
-//     .find()
-//     .then((dbRes) => {
-//       res.render("sneakers", { sneaker: dbRes }); 
-//     })
-//     .catch(next);
-//   });
-
-
-//   module.exports = router;
+module.exports = router;
