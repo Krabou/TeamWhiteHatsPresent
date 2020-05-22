@@ -13,7 +13,7 @@ So you won't have to deal that much with HTML/CSS ( Ahhh... this is perfect ; )
 ---
 
 ## You'll find the mission details below
-
+ 
 - all sneakers are fetched from a mongo database
 
 - the final users must be able to signup and signin
@@ -55,6 +55,7 @@ So you won't have to deal that much with HTML/CSS ( Ahhh... this is perfect ; )
   }  
 
 - Sneaker {  
+  image : String,
   name: String,  
   ref: String,  
   size: Number,  
