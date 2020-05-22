@@ -58,7 +58,13 @@ app.use(require("./middlewares/exposeLoginStatus")); // expose le status de conn
 app.use(require("./middlewares/exposeFlashMessage")); // affiche les messages dans le template
 
 // routers
+app.use(require("./routes/auth"));
+app.use(require("./routes/collection-sneakers"));
+app.use(require("./routes/dashboard_sneaker"));
 app.use(require("./routes/index"));
+app.use(require("./routes/men-sneakers"));
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
