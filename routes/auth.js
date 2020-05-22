@@ -10,5 +10,8 @@ router.get("/signup", (req, res) => {
     res.render("signin");
   });
   
+router.post("/signin", (req, res) =>{
+    res.redirect("/products_manage")
+})
 
 module.exports = router;
