@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 const express = require("express");
 const router = new express.Router();
 const userModel = require("./../models/User");
@@ -11,7 +12,7 @@ router.get("/signup", (req, res) => {
   });
   
 router.post("/signin", (req, res) =>{
-    res.render("products_manage")
+    res.redirect("/products_manage")
 })
 
 // router.post("/signin", (req, res) =>{
