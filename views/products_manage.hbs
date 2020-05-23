@@ -23,6 +23,18 @@
         <td colspan="6">sorry no sneakers yet</td>
       </tr>
       {{/unless}}
+      {{#each sneakers}}
+      <tr class="table-row">
+        <td>{{this.image}}</td>
+        <td>{{this.name}}</td>
+        <td>{{this.ref}}</td>
+        <td>{{this.price}}</td>
+        <td><a href="/prod-edit/{{this._id}}"><button class="button">e</button></a></td>
+        <td>
+          <form action="/prod-delete/{{this._id}}"><button class="button">x</button></form>
+        </td>
+      </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>
