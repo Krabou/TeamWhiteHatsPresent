@@ -4,7 +4,8 @@ const sneakerModel = require("./../models/Sneaker");
 const uploader = require("./../config/cloudinary");
 
 /*Display page product*/
-router.get("/products_manage", (req, res, next) => {
+
+router.get(["/products_manage", "/prod-manage"], (req, res, next) => {
     sneakerModel
         .find()
         .then((dbRes) =>
@@ -14,17 +15,51 @@ router.get("/products_manage", (req, res, next) => {
         .catch(next)
 });
 
+/*Add*/
+
+router.get("/prod-add",  (req, res, next) => {
+    sneakerModel 
+       .find()
+       .then((dbRes) => {
+         console.log(" tous les products >>>>>>>", dbRes);
+         res.render("products_add", { sneakers : dbRes }); 
+       })
+       .catch(next);
+   });
+
+
+router.post("/prod-add", uploader.single("image"), (req, res,next) => {
+    const sneaker = {...req.body};
+    if (req.file) {
+        sneaker.image = req.file.secure_url
+    };
+    sneakerModel
+      .create(sneaker)
+      .then((dbRes) => {
+        console.log("produit ajouté en bdd >>> ", dbRes);
+        res.redirect("/sneakers/women");
+      })
+      .catch(next);
+  });
+
+
 /*Edit*/
 router.get("/prod-edit/:id", (req, res, next) => {
     sneakerModel
         .findById(req.params.id)
-        .then((dbres) => res.render("product_edit", {
+        .then((dbRes) => res.render("product_edit", {
             sneaker: dbRes
         }))
         .catch(next)
 });
 
-router.post("/prod-edit/:id", (req, res, next) => {
+router.post("/prod-edit/:id", uploader.single("image"), (req, res, next) => {
+    const sneaker = {
+        ...req.body
+    };
+    if (req.file) {
+        sneaker.image = req.file.secure_url
+    };
     sneakerModel
         .findByIdAndUpdate(req.params.id, req.body)
         .then((dbRes) => res.redirect("/products_manage"))
@@ -32,7 +67,7 @@ router.post("/prod-edit/:id", (req, res, next) => {
 });
 
 /*Delete*/
-router.post("/prod-delete/:id", (req, res, next) => {
+router.get("/prod-delete/:id", (req, res, next) => {
     sneakerModel
         .findByIdAndDelete(req.params.id)
         .then((dbRes) => res.redirect("/products_manage"))

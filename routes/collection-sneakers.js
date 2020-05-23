@@ -9,9 +9,9 @@ router.get("/sneakers/collection", (req, res) => {
             console.log("collection", dbRes)
        
     res.render("products", {
-            collection: dbRes
+        sneakers: dbRes
         }) })
-        .catch(dbErr => console.log("error d'affichage collection"));
+        .catch((dbErr) => console.log(dbErr));
 });
 
 module.exports = router;

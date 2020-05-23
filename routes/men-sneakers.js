@@ -1,26 +1,21 @@
 const express = require("express");
-const router = express.Router();
-const sneakerModel = require("./../models/Sneaker");
+const router = new express.Router();
+const sneakerModel = require("../models/Sneaker");
+const uploader = require("../config/cloudinary");
+
+
 
 router.get("/sneakers/men", (req, res) => {
-    sneakerModel
+ sneakerModel 
     .find()
-    .then(dbRes => {
-        console.log("collection", dbRes)
-   
-res.render("products", {
-        collection: dbRes
-    }) })
-    .catch(dbErr => console.log("error d'affichage collection"));
+    .then((dbRes) => {
+      console.log(" tous les products >>>>>>>", dbRes);
+      res.render("products", { sneakers : dbRes }); 
+    })
+    .catch((dbErr) => console.log(dbErr));
 });
 
-// router.get("/sneakers/men", (req, res) => {
-//     sneakerModel 
-//        .find()
-//        .then((dbRes) => {        
-//          res.render("sneaker", { sneaker: dbRes }); 
-//        })
-//        .catch(next);
-//      });
-     
-//      module.exports = router;
+
+ 
+
+  module.exports = router;

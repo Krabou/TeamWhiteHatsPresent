@@ -13,7 +13,7 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
-const dev_mode = false;
+const dev_mode = true;
 const logger = require("morgan");
 
 // config logger (pour debug)
@@ -59,12 +59,12 @@ app.use(require("./middlewares/exposeFlashMessage")); // affiche les messages da
 
 // routers
 app.use(require("./routes/auth"));
-app.use(require("./routes/collection-sneakers"));
+// app.use(require("./routes/collection-sneakers"));
 app.use(require("./routes/dashboard_sneaker"));
 app.use(require("./routes/index"));
 // app.use(require("./routes/men-sneakers"));
-app.use(require("./routes/women-sneakers"));
-app.use(require("./routes/kids-sneakers"));
+// app.use(require("./routes/women-sneakers"));
+// app.use(require("./routes/kids-sneakers"));
 
 
 
