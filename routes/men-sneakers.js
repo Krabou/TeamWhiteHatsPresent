@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const sneakerModel = require("./../models/Sneaker");
 
-router.get("/sneakers/:men", (req, res) => {
+router.get("/sneakers/men", (req, res) => {
     sneakerModel
     .find()
     .then(dbRes => {
