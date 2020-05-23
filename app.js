@@ -59,7 +59,7 @@ app.use(require("./middlewares/exposeFlashMessage")); // affiche les messages da
 
 // routers
 app.use(require("./routes/auth"));
-// app.use(require("./routes/collection-sneakers"));
+app.use(require("./routes/collection-sneakers"));
 app.use(require("./routes/dashboard_sneaker"));
 app.use(require("./routes/index"));
 // app.use(require("./routes/men-sneakers"));

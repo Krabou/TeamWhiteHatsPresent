@@ -5,10 +5,12 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 
-router.get("")
+// router.get("/sneakers/:cat", (req, res) => {
+//   res.render("products");
+// });
 
 router.get("/one-product/:id", (req, res) => {
-  res.send("baz");
+  res.render("one_product");
 });
 
 
