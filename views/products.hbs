@@ -30,26 +30,6 @@
         pairs running shoes that align with your running philosophy.</p>
     </div>
 
-    {{!-- j'essaie d'afficher mes produits avec une boucle et le this--}}
-{{!-- 
-    <ul id="all-products" class="tag-list">
-      {{#each products}}
-      <li class="tag-list-item">
-        <h4 class="tag-title">
-          {{this.name}} ({{this.category.label}})
-        </h4>
-        <p>
-          {{this.price}} (stock:{{this.stock}})
-        </p>
-        <img src="{{this.image}}" alt="logo du produit ${{this.name}}" class="img">
-        <a href="/products/{{this._id}}">plus de détails...</a>
-      </li>
-      {{/each}}
-    </ul> --}}
-
-
-
-
     {{#unless sneakers}}
     <p>Sorry, no sneakers yet !</p>
     {{/unless}}
