@@ -6,9 +6,44 @@ const protectPrivateRoute = require("./../middlewares/protectPrivateRoute");
 const router = new express.Router();
 const userModel = require("./../models/User");
 
+/********** SIGNIN ***********/
+
+router.get("/signin", (req, res) => {
+  res.render("signin");
+});
+
+router.post("/signin", (req, res, next) => {
+  console.log("did i catch my user right?", req.body.email, req.body.pasword);
+  const userInfos = req.body; 
+  userModel 
+  .findOne({email: userInfos.email})
+  .then( user => {
+      console.log("does this email already exist?", user);
+      if(!user){
+          req.flash("error", "inccorect provided details");
+          res.redirect("/signin")
+      }
+      const checkPassword = bcrypt.compareSync(
+          userInfos.password,
+          user.password
+      );
+      if (!checkPassword === false){
+          req.flash("error","inccorect provided details")
+          res.redirect("/signin")
+      }
+      const {_doc: clone} = {...user};
+      delete clone.password;
+      req.session.currentUser = clone;
+      res.redirect("/products_manage")
+  })
+  .catch(next);
+
+  });
+
+
+
 
 /*SIGNUP inscription*/
-
 router.get("/signup", (req, res) => {
   res.render("signup");
 });
