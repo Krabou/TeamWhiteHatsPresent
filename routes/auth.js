@@ -18,7 +18,7 @@ userModel
 .findOne({ email : req.body.email})
 .then((dbRes) => {
   if (dbRes) {
-    res.redirect("/signin");
+    res.redirect("/signup");
   }
 })
 .catch(next);
