@@ -18,13 +18,16 @@ router.get(["/products_manage", "/prod-manage"], (req, res, next) => {
 /*Add*/
 
 router.get("/prod-add",  (req, res, next) => {
-    sneakerModel 
-       .find()
-       .then((dbRes) => {
-         console.log(" tous les products >>>>>>>", dbRes);
-         res.render("products_add", { sneakers : dbRes }); 
-       })
-       .catch(next);
+    // sneakerModel 
+    //    .find()
+    //    .then((dbRes) => {
+    //      console.log(" tous les products >>>>>>>", dbRes);
+         res.render("products_add"
+        //  , 
+        //  { sneakers : dbRes }
+         ); 
+    //    })
+    //    .catch(next);
    });
 
 

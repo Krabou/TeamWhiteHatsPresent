@@ -15,7 +15,7 @@ if (req.file) {
     sneaker.image = req.file.secure_url
 };
   sneakerModel 
-      .find()
+      .find({"category":req.params.cat})
       .then((dbRes) => {
         console.log(" tous les products >>>>>>>", dbRes);
         res.render("products", { sneakers : dbRes }); 
