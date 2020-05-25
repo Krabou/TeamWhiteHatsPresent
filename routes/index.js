@@ -23,7 +23,7 @@ if (req.file) {
       .catch(next);
 });
 
-router.get("/collection", uploader.single("image"), (req, res, next)  => {
+router.get("/sneakers", uploader.single("image"), (req, res, next)  => {
   const sneaker = {
     ...req.body
 };
