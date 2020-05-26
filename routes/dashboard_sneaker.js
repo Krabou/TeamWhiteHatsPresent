@@ -1,6 +1,7 @@
 const express = require("express"); // import express in this module
 const router = new express.Router(); // create an app sub-module (router)
 const sneakerModel = require("./../models/Sneaker");
+const tagModel = require("./../models/Tag");
 const uploader = require("./../config/cloudinary");
 
 /*Display page product*/
@@ -18,16 +19,13 @@ router.get(["/products_manage", "/prod-manage"], (req, res, next) => {
 /*Add*/
 
 router.get("/prod-add",  (req, res, next) => {
-    // sneakerModel 
-    //    .find()
-    //    .then((dbRes) => {
-    //      console.log(" tous les products >>>>>>>", dbRes);
-         res.render("products_add"
-        //  , 
-        //  { sneakers : dbRes }
+  tagModel 
+       .find()
+       .then((dbRes) => {
+         res.render("products_add",  { tags : dbRes }
          ); 
-    //    })
-    //    .catch(next);
+       })
+       .catch(next);
    });
 
 
@@ -36,8 +34,8 @@ router.post("/prod-add", uploader.single("image"), (req, res,next) => {
     if (req.file) {
         sneaker.image = req.file.secure_url
     };
-    sneakerModel
-      .create(sneaker)
+    Promise.all([sneakerModel.create(sneaker), tagModel.create(req.body)]
+)
       .then((dbRes) => {
         console.log("produit ajouté en bdd >>> ", dbRes);
         res.redirect("/sneakers/women");
@@ -45,6 +43,16 @@ router.post("/prod-add", uploader.single("image"), (req, res,next) => {
       .catch(next);
   });
 
+  router.post("/tag-add",(req, res,next) => {
+
+   tagModel.create(req.body)
+
+      .then((dbRes) => {
+        console.log("produit ajouté en bdd >>> ", dbRes);
+        res.redirect("/sneakers/women");
+      })
+      .catch(next);
+  });
 
 /*Edit*/
 router.get("/prod-edit/:id", (req, res, next) => {

@@ -8,6 +8,7 @@ input:focus {
   border: 1px solid black;
   border-radius: 0.2rem;
   font-size: 0.9rem;
+  min-width: 300px;
 }
 
 /*----select option----*/
