@@ -117,9 +117,9 @@ router.post("/signin", (req, res, next) => {
 // router.post("/signin", (req, res) =>{
 //     res.render("products_add")
 // })
-// router.post("/foo", (req, res) => {
-//   res.render("signin")
-// })
+router.post("/foo", (req, res) => {
+  res.render("signin")
+})
 
 /*logout*/
 router.get("/logout", (req, res) => {

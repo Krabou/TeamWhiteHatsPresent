@@ -1,11 +1,12 @@
 /* SIGNUP */
 .sign.form-container {
-  padding: 0 1.2rem;
+  padding: 9% 1.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 9%;
+  /* padding-top: 9%; */
   height: calc(100vh - (84px));
+  overflow-y: scroll;
 }
 
 .form-header {
@@ -20,10 +21,10 @@
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
-
 #form_user .form-item-wrapper:last-child {
   margin-bottom: 1.2rem;
 }
+
 
 #form_user {
   display: flex;
@@ -33,11 +34,10 @@
   width: 100%;
 }
 
-#form_user .form-item-wrapper {
-  width: 30%;
-}
 
-.form-subtitle {
+
+.form-title , .form-subtitle {
+  text-align: center;
 }
 
 .form-sub-infos {
@@ -57,3 +57,10 @@
   color: rgb(52, 52, 255);
   border-bottom: 1px solid rgb(52, 52, 255);
 }
+
+@media screen and (min-width: 1024px){
+  #form_user .form-item-wrapper {
+    width: 30%;
+  }
+}
+
