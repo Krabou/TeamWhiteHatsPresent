@@ -3,10 +3,11 @@ const router = new express.Router(); // create an app sub-module (router)
 const sneakerModel = require("./../models/Sneaker");
 const tagModel = require("./../models/Tag");
 const uploader = require("./../config/cloudinary");
+const protectPrivateRoute = require("./../middlewares/protectPrivateRoute")
 
 /*Display page product*/
 
-router.get(["/products_manage", "/prod-manage"], (req, res, next) => {
+router.get(["/products_manage", "/prod-manage"],protectPrivateRoute, (req, res, next) => {
     sneakerModel
         .find()
         .then((dbRes) =>

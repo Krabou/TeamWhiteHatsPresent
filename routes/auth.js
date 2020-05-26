@@ -1,8 +1,5 @@
 const bcrypt = require("bcrypt");
-const exposeFlashMessage = require("./../middlewares/exposeFlashMessage");
-const exposeLogginStatus = require("./../middlewares/exposeLoginStatus");
 const express = require("express");
-const protectPrivateRoute = require("./../middlewares/protectPrivateRoute");
 const router = new express.Router();
 const userModel = require("./../models/User");
 
