@@ -43,15 +43,32 @@ router.post("/prod-add", uploader.single("image"), (req, res,next) => {
       .catch(next);
   });
 
-  router.post("/tag-add",(req, res,next) => {
+//   router.post("/tag-add",(req, res,next) => {
 
-   tagModel.create(req.body)
+//    tagModel.create(req.body)
 
-      .then((dbRes) => {
-        console.log("produit ajouté en bdd >>> ", dbRes);
-        res.redirect("/sneakers/women");
-      })
-      .catch(next);
+//       .then((dbRes) => {
+//         console.log("produit ajouté en bdd >>> ", dbRes);
+//         res.redirect("/sneakers/women");
+//       })
+//       .catch(next);
+//   });
+
+  /************* tags  ************/
+
+  router.get("/tag-add", (req, res) => {
+    tagModel
+    .find() 
+       .then((dbRes) => {
+         res.render("prod-add", { tags : dbRes }); 
+       })
+       .catch((dbErr) => console.error(dbErr));
+    });
+
+  router.post("/tag-add", (req, res) => { 
+   tagModel.create(req.body) 
+      .then((dbRes) => { res.redirect("/prod-add")})
+      .catch((dbErr) => console.error(dbErr));
   });
 
 /*Edit*/
