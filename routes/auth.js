@@ -16,7 +16,7 @@ router.post("/signin", (req, res, next) => {
   console.log("did i catch my user right?", req.body.email, req.body.pasword);
   const userInfos = req.body;
   if (!userInfos.email || !userInfos.password) {
-    warning_msg= req.flash("warning", "email and password are required");
+    req.flash("warning", "email and password are required");
     res.redirect("/signin");
   }
   userModel
@@ -26,7 +26,7 @@ router.post("/signin", (req, res, next) => {
     .then(user => {
       console.log("does this email already exist?", user);
       if (!user) {
-        error_msg= req.flash("error", "incorrect provided details");
+       req.flash("error", "incorrect provided details");
         res.redirect("/signin")
       }
       const checkPassword = bcrypt.compareSync(
@@ -59,12 +59,17 @@ router.get("/signup", (req, res) => {
 });
 
 router.post("/foo", (req, res, next) => {
+  if (!req.body.name || !req.body.password || !req.body.email) {
+    req.flash("warning", "Merci de remplir tous les champs requis.");
+    res.redirect("/signup");
+  } else {
   userModel
     .findOne({
       email: req.body.email
     })
     .then((dbRes) => {
       if (dbRes) {
+        req.flash("warning", "Désolé, cet email n'est pas disponible.");
         res.redirect("/signup");
       }
     })
@@ -80,6 +85,7 @@ router.post("/foo", (req, res, next) => {
       res.redirect("/signin");
     })
     .catch(next)
+  }
 });
 
 /*SIGNIN*/

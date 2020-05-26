@@ -32,16 +32,13 @@ router.get("/prod-add",  (req, res, next) => {
 router.post("/prod-add", uploader.single("image"), (req, res,next) => {
     const sneaker = {...req.body};
     if (req.file) {
-        sneaker.image = req.file.secure_url
-    };
-    Promise.all([sneakerModel.create(sneaker), tagModel.create(req.body)]
-)
+        sneaker.image = req.file.secure_url};
+    sneakerModel.create(sneaker)
       .then((dbRes) => {
         console.log("produit ajouté en bdd >>> ", dbRes);
-        res.redirect("/sneakers/women");
-      })
+        res.redirect("/prod-add");})
       .catch(next);
-  });
+    });
 
 
   /************* tags  ************/

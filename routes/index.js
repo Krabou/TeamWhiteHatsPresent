@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const sneakerModel = require("../models/Sneaker");
+const tagModel = require("./../models/Tag");
 const uploader = require("../config/cloudinary");
 
 router.get("/", (req, res) => {
@@ -14,14 +15,11 @@ router.get("/sneakers/:cat", uploader.single("image"), (req, res, next) => {
   if (req.file) {
     sneaker.image = req.file.secure_url
   };
-  sneakerModel
-    .find({
-      "category": req.params.cat
-    })
+  Promise.all([sneakerModel.find({"category": req.params.cat }), tagModel.find()])
     .then((dbRes) => {
       console.log(" tous les products >>>>>>>", dbRes);
       res.render("products", {
-        sneakers: dbRes
+        sneakers: dbRes[0], tags: dbRes[1]
       });
     })
     .catch(next);
@@ -35,11 +33,11 @@ router.get("/sneakers", uploader.single("image"), (req, res, next) => {
     sneaker.image = req.file.secure_url
   };
   sneakerModel
-    .find()
+  Promise.all([sneakerModel.find(), tagModel.find()])
     .then((dbRes) => {
       console.log(" tous les products >>>>>>>", dbRes);
       res.render("products", {
-        sneakers: dbRes
+        sneakers: dbRes[0], tags: dbRes[1]
       });
     })
     .catch(next);
