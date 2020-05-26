@@ -43,16 +43,6 @@ router.post("/prod-add", uploader.single("image"), (req, res,next) => {
       .catch(next);
   });
 
-//   router.post("/tag-add",(req, res,next) => {
-
-//    tagModel.create(req.body)
-
-//       .then((dbRes) => {
-//         console.log("produit ajouté en bdd >>> ", dbRes);
-//         res.redirect("/sneakers/women");
-//       })
-//       .catch(next);
-//   });
 
   /************* tags  ************/
 
